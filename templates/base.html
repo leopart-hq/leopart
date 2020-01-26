@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LEOPART - The fast PCB Component Search Engine</title>
+        <link href="{{ url_for('static', filename='css/header.scss.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/main.scss.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='css/footer.scss.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename='images/logo.png') }}" rel="shortcut icon" type="image/png">
+    </head>
+    <body>    
+        <img class="Background_rightTop" alt="background" src="/static/images/right_background.png"/>
+        
+        {% block content %}{% endblock %}
+
+        <!--<div class="Footer">
+            <div class="Footer__container">
+                <a href="https://github.com/KicadSearch/KicadSearch" target="_blank" class="Footer__logoContainer"> 
+                    Watch code on <img class="Footer__logoContainerImage" alt="logo" src="/static/images/github_logo.jpg"/>
+                </a>
+                <a href="https://github.com/KicadSearch/KicadSearch/blob/master/license.md" target="_blank" class="Footer__licenseButton">
+                    License
+                </a>
+            </div>
+        </div>-->
+        <div class="Footer_Copy">(c) 2019-2020 LEOPART Project 🐆</div>
+    </body>
+</html>

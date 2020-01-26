@@ -1,0 +1,56 @@
+//------------colors------------
+
+$brand-color: #ff6711;
+
+$grey-scale-darker: #444444;
+$grey-scale-text: #717171;
+$grey-scale-base: #cccccc;
+
+$white-color: #ffffff;
+
+//------------fonts------------
+
+
+@mixin titleXL {
+    font-size: 1.25em;
+    font-family: Arial;
+}
+
+@mixin titleXXL {
+    font-size: 3em;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+@mixin textM {
+    font-size: 1.25em;
+    font-family: Arial;
+}
+
+@mixin textMold {
+    font-size: 1.25em;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+@mixin textL {
+    font-size: 1em;
+    font-family: Arial;
+}
+
+@mixin textLBold{
+    font-size: 1em;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+@mixin textS {
+    font-size: 0.85em;
+    font-family: Arial;
+}
+
+@mixin textSBold{
+    font-size: 0.85em;
+    font-family: Arial;
+    font-weight: bold;
+}

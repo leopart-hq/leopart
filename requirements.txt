@@ -1,0 +1,12 @@
+tqdm
+Flask
+libsass
+pytest
+pylint
+PyGithub
+python-dateutil
+pandas
+requests
+pycodestyle
+sqlalchemy
+jellyfish

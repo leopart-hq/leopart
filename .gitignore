@@ -1,0 +1,17 @@
+.idea
+venv
+__pycache__
+.pytest_cache
+repos.pickle
+*.pickle
+*.kicad_pcb
+*/test.html
+dump_found_modules.html
+*.sqlite
+/builds/
+config/crawler.config
+henmsearch.service
+*.log
+/config/parser.config
+/static/css/*.scss.css
+/static/css/*.scss.css.map

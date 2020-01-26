@@ -1,0 +1,297 @@
+# Developer Manual & Build Instructions
+In this document, we provide information on how to develop and deploy the software correctly for productive use.
+
+Version: 3a (22.01.2020, 17:45)
+
+## System Requirements
+To run our system, the following requirements are necessary.
+
+Operating system:
+
+- Microsoft Windows
+- Apple MacOs 
+- Linux
+
+The operating system does not matter, as long as it is able to run Python 3.6 or higher.
+
+## Software Requirements
+To run our system, the following software requirements need to be fulfilled.
+
+Software:
+- Python 3.6 or higher, available at https://www.python.org/downloads/
+
+Additional Packages:
+For our software we need some additional packages. These can be found in ``requirements.txt``.
+
+Those include:
+
+- for running the website
+    ````
+    Flask
+    libsass
+    ````    
+- for development and CI
+    ````
+    pytest
+    pylint
+    pycodestyle
+    ````
+   
+- for the crawler
+    ```
+    PyGithub
+    python-dateutil
+    ```
+    
+    Additionally on windows systems:
+    ````
+    curses-windows
+    ````
+    
+
+- for the parser additionally
+    ````
+    requests
+    sqlalchemy
+    ````
+  
+- for the validator additionally:
+    ````
+    tqdm
+    jellyfish
+    ```` 
+  
+Please note that for some packages, additional system requirements may occur (e.g. a C/C++ compiler). If you don't fulfill
+the requirements, you will be notified and hinted on how to solve this during installation. 
+ 
+# Installation
+To run our software, please follow these installation procedures
+
+1. Download and install the binaries for Python from the website or package manager according to your operating system.
+    You can get the latest version at [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+    To validate your install, or to check, if you have a sufficient installation of Python running, you can open a terminal or command promt and issue the following command:
+    ```
+    python --version
+    ```
+    On some Linux systems the `python` command is associated with an installation of python2. In this case please use `python3` instead.
+
+    The command above should result to the a similar output like this:
+    ```
+    Python 3.8.0
+    ```
+   
+   **Notice:** Please verify that the version number shown here is recent enough (>= 3.6). 
+    
+2. Please install the requiered dependencies located above or in the `requirements.txt`.
+
+   We recommend to install the necessary dependencies in Python using the package manager `pip`.
+   If you desire, you can continue and install the dependencies any other way. If you want to proceed with `pip`, firstly 
+   verify that your installation of Python comes with the package manager `pip`.
+   
+   For that, please issue the following command in a terminal or command promt:
+   ```pip --version``` or ```pip3 --version``` respectively, if your system defaults to python2.
+   
+   The output should look something like that.
+   ```
+   pip 19.2.3 from c:\users\yourusername\appdata\local\programs\python\python38\lib\site-packages\pip (python 3.8)
+   ```
+   
+3. Download the files of our repository and extract them at a location of your desire.
+   Once downloaded and extracted. Please open a terminal or command promt and point it to the installation folder.
+   
+   Example:
+   If you have extracted the files in the User folder `parts_search` you can use the following commands no navigate there.
+   
+   On Windows:
+   ```cd %HOMEPATH%\parts_search```
+   
+   On Linux-like systems:
+   ```cd ~/parts_search``` 
+
+4. We recommend to use a virtual environment for our project.
+   
+   1. To create a venv, please issue the following commands in the terminal or command promt in the project directory
+   
+   ```
+    python -m venv venv
+    ```
+   
+   2. Now you need to activate the venv. To do that, please issue:
+   On linux-like systems
+   ```
+   source venv/bin/activate
+   ```
+   or on Windows:
+   ```
+   .\venv\Scripts\activate
+   ```
+   
+   3. To later deactivte the venv, simply close the promt or issue `deactivate` command.
+
+4. If you chose the installation with pip, you can conveniently install the requirements by issuing the following command in the project root directory:
+   ```
+   pip install -r requirements.txt 
+   ```
+   
+   If you are on Windows, please additionally install the [windows-curses](https://pypi.org/project/windows-curses/) lib.
+   ```
+   pip install windows-curses
+   ```
+   
+5. Your system should be now ready for our project.
+   
+### Troubleshooting the installation
+For problems with pip or the venv, please have a look at [https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+
+# Running our Project
+In order to successfully to run our project, you need two things. 
+    
+1. A Pickle File containing information about the repositories. This is automatically generated by our crawler.
+
+    _Please Note: If you have run our project before, you might be able to re-use an existing pickle file. For that just drop it into the project directory. However, due to internal changes, it might be incompatible. Please refer to release notes to verify compatibility._
+    
+2. A (local) database containing the parts extracted from the repositories as well as additional parts info.
+
+    _Please Note: If you have run our project before, you might be able to re-use an existing database file. For that just drop it into the kicad_parse/database project directory. However, due to internal changes, it might be incompatible. Please refer to release notes to verify compatibility._
+
+In the following, we will show you how to obtain these two things.
+
+## Repositories File
+To obtain the repositories pickle file, you need to execute the crawler. The crawler will search on GitHub for repositories containing KiCad files. 
+
+To execute the crawler, please follow these steps:
+1. In the project root directory, make a copy of the ``example_crawler.config`` file and rename it to ``crawler.config``.
+
+2. Open the ``crawler.config`` file and add the following information:
+    1. ``User`` the Username 
+    2. ``Password`` the secret password.
+    
+    Currently, these credentials are the same used to log in into your github account.
+    
+    After you have added these credentials, save and close the file.
+    
+ 3. Start the crawler by issuing the following command in the command promt or terminal in the project root.
+    ```
+    python crawler.py
+    ``` 
+    
+    Let the crawler run, as long as you like. The longer the crawler runs, the more repositories it is to find. All repos found will be saved in the ``repos.pickle`` file.
+    
+    **IMPORTANT**: Please note that the crawler only saves the data once it has completed a full month!
+    
+## Running the parser
+Once you have obtained a pickle file from our crawler, you can use our parser to extract the parts information.
+
+To run it, please follow these instructions:
+1. In the project root directory, run the following command: 
+    ````python -m kicad_parser.py -p repos.pickle````
+    The parser now extracts all components from the found KiCad files.
+
+**Notice:** We already try to filter out uninteresting components. If you notice any parts in particular, that you want to exclude add them in the `excluded_values.txt` (one entry per row).
+
+In this state, the parts are not validated yet. However, the search will already be usable. In order to get additional information like datasheets, you need to verify the parts. To do this, follow the instructions in the next section.
+
+## Ruinning the validator (optional)
+To validate parts and get additional information, please use our validator. Here, you need API access to the AISLER Parts API. Please contact them for credentials.
+
+1. In the project root directory, make a copy of the ``example_parser.config`` file and rename it to ``parser.config``.
+
+2. Open the ``parser.config`` file and add the following information provided by AISLER:
+    1. ``Client-ID`` the Client-ID 
+    2. ``Authorization`` the Authorization Token.
+    
+3. In the project root, please execute the following command:
+   ```
+   python  validator.py -p repos.pickle
+   ```
+   The validator now makes a local copy of the AISLER Parts DB. This will take a while. You can stop and skip the build-up of the parts DB by pressing <kbd>CMD</kbd> + <kbd>C</kbd> or <kbd>CTRL</kbd> + <kbd>C</kbd>.
+   
+   Then the validator automatically tries to match the currently existing components from the KiCad files to those of the Parts DB.
+   
+   The validator automatically resumes when stopped.
+   
+   The validator also will wait one week after a complete finish until the database will be updated.
+   
+   The validator indicates certain errors with an exit code:
+   ````
+     0	ok
+    -1	Program Aborted
+    -2	Configuration initialization failed
+    -3	Configuration file not found
+    -4	SQL session initialization error
+    -5	API request call failed with non-200 code
+    -6	Loop detected while querying API
+    -7	general exception while building Parts db
+   ````
+
+## Running the website
+Once the database was constructed by our parser, you will be able to run the website. 
+
+1. In the project root, execute
+   ```
+   python -m flask run
+   ``` 
+   
+2. To terminate the server, press <kbd>CMD</kbd> +  <kbd>C</kbd> or <kbd>CTRL</kbd> +  <kbd>C</kbd>, or close the terminal.
+
+# Running Tests
+Tests are located in the `tests` directory.
+
+For the testing framework we opted for `pytest` as it brings some useful features such as auto-discovery of tests etc.
+
+1. To run the tests, please open a terminal or command promt and navigate to the root directory of our project.
+2. Then, issue the command: `python3 -m pytest` or `pytest`. Both options should work.
+
+**Please Note**: We encountered an strange behaviour on our Windows machines where pytest aborted with exit code 8, incomplete discovery and no execution of tests. We are not sure why this happens but on a Linux installation this behavior could not be reproduced. So please be aware when testing on Windows!
+
+
+# Changelog
+Changes from v3a -> v3b:
+
+Updated the instructions to rename parser file.
+
+---
+Changes from v3 -> v3a:
+
+Updated the instructions to accommodate switch from flask-scss to libsass.
+
+---
+
+Changes from v2c -> v3:
+
+Updated the instructions according to the restructure of project and split into separate validator.
+
+---
+
+Changes from v2b -> v2c:
+
+| Change   | Description                                                                                               |
+|----------|-----------------------------------------------------------------------------------------------------------|
+| add      | Added Testing section. Notice for issues on Windows.                                                      |
+| update   | fix heading structure                                                                                     |
+
+---
+
+Changes from v2a -> v2b:
+
+| Change   | Description                                                                                               |
+|----------|-----------------------------------------------------------------------------------------------------------|
+| add      | Include Warning/Notice of skips |
+
+ ---
+ 
+ Changes from v2 -> v2a:
+
+| Change   | Description                                                                                               |
+|----------|-----------------------------------------------------------------------------------------------------------|
+| mod      | Clarified the terminology |
+
+---
+
+Changes from v1b -> v2:
+
+| Change   | Description                                                                                               |
+|----------|-----------------------------------------------------------------------------------------------------------|
+| mod      | Added/Updated the requirements in Sprint 3 |
+| mod      | Updated run instructions for changes in Sprint 3 |

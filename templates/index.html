@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="Main__container">
+        <a href="?" class="Main__title">
+            LEOPART
+        </a>
+        <div class="Main__stitle">
+            The fast and easy component search engine for reference designs.
+        </div>
+        <div class="Main__subtitle">
+            Qualify parts for your next project and find reference designs from public repositories.
+        </div>
+        <div class="Main__description">
+            Quickly find reference designs, get information on how others used a
+            component and ultimately qualify the components in a breeze for your next amazing project.
+            <br />
+            Just enter a component name (e.g. ESP8266) and off you go! 🚀
+        </div>
+        <form class="Main__searchContainer" method="GET" action="/">
+            <div class="Main__searchInputContainer">
+                <input name="q" placeholder="Enter a component name (e.g. ESP8266)..." class="Main__searchInput" type="text"/>
+            </div>
+            <button class="Main__searchButtonContainer" type="submit">Search</button>
+        </form>
+        <div class="Main__resultsContainer">
+            {% if searchResult and searchResult.status == "OK" %}
+                {% if searchResult.results != [] %}
+                    <div class="Main__counterResult">
+                        Found {{ searchResult.results | length }} repositories:
+                    </div>
+                    {% for item in searchResult.results %}
+                        <div class="Main__cardContainer">
+                            <div class="Main__cardInfo">
+                                {% if item.repo_name != None %}
+                                    <div class="Main__cardModuleName">
+                                        <a class="Main__cardModuleNameLink" href={{ item.repo_url }} target="_blank">
+                                            {{ item.repo_name|upper }}
+                                        </a>
+                                        <div class="Main__cardModuleAdditionalInfo">
+                                            {% if item.repo_stars != None %}
+                                                <div class="Main__cardModuleStars">
+                                                    <div class="Main__cardModuleStarIcon">
+                                                        ⋆
+                                                    </div>
+                                                    {{ item.repo_stars }}
+                                                </div>
+                                            {% endif %}
+                                            {% if item.repo_forks != None %}
+                                                <div class="Main__cardModuleForks">
+                                                    <div class="Main__cardModuleFrokIcon">
+                                                        ᚶ
+                                                    </div>
+                                                    {{ item.repo_forks }}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if item.repo_desc != None %}
+                                    <div class="Main__cardModuleDescription">
+                                        {{ item.repo_desc }}
+                                    </div>
+                                {% endif %}
+                                <div class="Main__cardModuleLicense">
+                                    {% if item.repo_license_url == '' %}
+                                        <div class="Main__cardModuleLicenseWarningMessage">
+                                            <div class="Main__cardModuleLicenseWarningLogo">
+                                                ⚠
+                                            </div>
+                                            <div class="Main__cardModuleLicenseWarningText">
+                                                {{ item.repo_license }}
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div>
+                                            <a class="Main__cardModuleLicenseLink"
+                                               href={{ item.repo_license_url }} target="_blank">
+                                                Link to the licence: {{ item.repo_license }}
+                                            </a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="Main__relevantFilesContainer">
+                                    <div class="Main__relevantFilesContainerHeader">
+                                        Relevant Files:
+                                    </div>
+                                    <div class="Main__relevantFiles">
+                                        <div class="Main__relevantFileHeader">
+                                            <div class="Main__relevantFileNameHeader">
+                                                File name
+                                            </div>
+                                            <div class="Main__relevantFileComponentHeader">
+                                                Found component
+                                            </div>
+                                            <div class="Main__relevantFileDescriptionHeader">
+                                                Description
+                                            </div>
+                                            <div class="Main__relevantFileDataSheetHeader">
+                                                Data Sheet
+                                            </div>
+                                        </div>
+                                        {% for files in item.files %}
+                                            <div class="Main__relevantFile">
+                                                <div class="Main__relevantFileName">
+                                                    <a class="Main__relevantFileLink"
+                                                       href={{ files.file_url }}  target="_blank">
+                                                        {{ files.file_name }}
+                                                    </a>
+                                                </div>
+                                                <div class="Main__relevantFileComponent">
+                                                    <b>{{ searchComponent|upper }}</b>
+                                                    {% if files.component != None %}
+                                                        {{ files.component.replace(searchComponent|upper, '') }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="Main__relevantFileDescription">
+                                                    {% if files.description != None and files.description.startswith('"') and files.description.endswith('"') %}
+                                                        {{ files.description[1:-1] }}
+                                                    {% else %}
+                                                        {{ files.description }}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="Main__relevantFileDataSheet">
+                                                    {% if files.datasheet != '' %}
+                                                        <a class="Main__relevantFileLink"
+                                                           href={{ files.datasheet }}  target="_blank">
+                                                            Data Sheet
+                                                        </a>
+                                                    {% else %}
+                                                        No data
+                                                    {% endif %}
+                                                    {% if files.mpn != '' %}
+                                                        <div class="Main__mpnContainer">
+                                                            ({{ files.mpn }})
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="Main__tagsContainer">
+                                        {% if item.tags %}
+                                            Tags:
+                                            {% for tag in item.tags %}
+                                                <div class="Main__tag">
+                                                    {{ tag }}
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% include 'affiliates.html' %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% elif searchResult.results == [] %}
+                    <div class="Main__noResult">
+                        No results found. Please try another term.
+                    </div>
+                {% endif %}
+            {% elif searchResult and searchResult.status == "ERROR" %}
+                <div class="Main__noResult">
+                    Oops. Something went wrong! We're sorry. Please try again later...
+                </div>
+            {% else %}
+                <div>
+
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

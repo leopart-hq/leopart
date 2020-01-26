@@ -1,0 +1,340 @@
+.Main__container {
+  max-width: 60em;
+  margin: auto;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 160px); }
+
+  .Main__title {
+    font-size: 3em;
+    font-family: Arial;
+    font-weight: bold;
+    color: #444444;
+    margin: 50px 100px 30px 0;
+    max-width: 320px; }
+    @media screen and (max-width: 500px) {
+      .Main__title {
+        margin: 50px 0 30px 0;   }
+}
+
+.Main__subtitle {
+  font-size: 1.25em;
+  font-family: Arial;
+  color: #444444;
+  margin: 30px 100px 70px 0;
+  max-width: 370px; }
+
+  .Main__searchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+    border: 1px solid #444444;
+    border-radius: 0.25em;
+    background: white; }
+    @media screen and (max-width: 500px) {
+      .Main__searchContainer {
+        flex-direction: column;   }
+}
+
+.Main__searchInputContainer {
+  display: flex;
+  width: 100%;
+  padding-right: 1em; }
+
+  .Main__searchInput {
+    font-size: 1em;
+    font-family: Arial;
+    color: #444444;
+    width: 100%;
+    padding: 0 1em;
+    outline: none;
+    border: 1px solid #cccccc;
+    border-radius: 0.25em;
+    box-shadow: inset -2px 2px 2px 0px #f5efef; }
+    @media screen and (max-width: 500px) {
+      .Main__searchInput {
+        height: 35px;
+        margin-bottom: 10px;   }
+}
+
+.Main__searchButtonContainer {
+  font-size: 1em;
+  font-family: Arial;
+  color: #ffffff;
+  background-color: #ff6711;
+  padding: 0.5em 2em;
+  border-radius: 0.15em;
+  outline: none;
+  border: none; }
+  @media screen and (max-width: 500px) {
+    .Main__searchButtonContainer {
+      height: 40px;
+      line-height: 40px;
+      padding: 0;
+      text-align: center;   }
+}
+    .Main__searchButtonContainer:hover {
+      background-color: #ff6711;
+      cursor: pointer; }
+
+.Main__arrowBottom {
+  height: 30px;
+  margin: 0 20px;
+  transform: rotate(90deg); }
+
+  .Main__resultsContainer {
+    margin-bottom: 3em; }
+
+    .Main__cardContainerLink {
+      text-decoration: none; }
+
+      .Main__cardContainer {
+        display: flex;
+        flex-direction: row;
+        padding: 1em;
+        border: 1px solid #444444;
+        margin: 1em 0;
+        background: #ffffff;
+        border-radius: 0.25em; }
+
+        .Main__cardLogo {
+          background-image: url(../images/pcb.jpg);
+          width: 8em;
+          border-radius: 0.5em;
+          background-size: 300%; }
+
+          .Main__cardInfo {
+            padding: 1em;
+            width: 100%; }
+
+            .Main__cardModuleName {
+              font-size: 1em;
+              font-family: Arial;
+              font-weight: bold;
+              color: #444444;
+              margin: 0.5em;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center; }
+
+              .Main__cardModuleNameLink {
+                font-size: 1em;
+                font-family: Arial;
+                color: #ff6711;
+                text-decoration: none; }
+                .Main__cardModuleNameLink:hover {
+                  cursor: pointer;
+                  color: #ff6711;
+                  text-decoration: underline; }
+
+.Main__cardModuleAdditionalInfo {
+  display: flex;
+  flex-direction: row; }
+
+  .Main__cardModuleStars {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 2.5em;
+    padding: 0 0.75em 0 0.5em;
+    border: 1px solid #cccccc;
+    border-radius: 0.15em;
+    margin-right: 0.5em;
+    font-size: 0.85em; }
+
+    .Main__cardModuleStarIcon {
+      font-size: 4em;
+      color: #ff6711;
+      margin-right: 0.15em; }
+
+      .Main__cardModuleForks {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 2.5em;
+        padding: 0 0.75em 0 0.5em;
+        border: 1px solid #cccccc;
+        border-radius: 0.15em;
+        font-size: 0.85em; }
+
+        .Main__cardModuleFrokIcon {
+          font-size: 1.5em;
+          color: #ff6711;
+          margin: 0 0.25em; }
+
+          .Main__cardModuleDescription {
+            font-size: 1em;
+            font-family: Arial;
+            color: #444444;
+            margin: 0.5em; }
+
+            .Main__cardModuleTags {
+              font-size: 1em;
+              font-family: Arial;
+              color: #444444;
+              margin: 0.5em; }
+
+              .Main__cardModuleFoundComponent {
+                font-size: 1em;
+                font-family: Arial;
+                color: #444444;
+                margin: 0.5em; }
+
+                .Main__cardModuleUrl {
+                  font-size: 1em;
+                  font-family: Arial;
+                  color: #ff6711;
+                  text-decoration: underline;
+                  margin: 0.5em; }
+
+                  .Main__cardModuleLicense {
+                    margin: 1em 0.5em 0em; }
+
+                    .Main__cardModuleLicenseWarningMessage {
+                      font-size: 0.85em;
+                      font-family: Arial;
+                      color: #444444;
+                      padding: 0.5em;
+                      display: flex;
+                      flex-direction: row;
+                      align-items: center;
+                      background: #efefef;
+                      border-radius: 0.5em;
+                      border: 1px solid #9E9E9E; }
+
+                      .Main__cardModuleLicenseWarningLogo {
+                        font-size: 1.5em;
+                        margin: 0.25em 0.5em; }
+
+                        .Main__cardModuleLicenseLink {
+                          font-size: 1em;
+                          font-family: Arial;
+                          color: #ff6711;
+                          margin: 0.5em; }
+                          .Main__cardModuleLicenseLink:hover {
+                            cursor: pointer;
+                            color: #ff6711;
+                            text-decoration: underline; }
+
+.Main__relevantFilesContainer {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: column; }
+
+  .Main__relevantFilesContainerHeader {
+    font-size: 1em;
+    font-family: Arial;
+    font-weight: bold;
+    color: #444444;
+    margin: 0.5em 0; }
+
+    .Main__relevantFile {
+      padding: 0 1em;
+      margin: 0.5em 0;
+      border-radius: 0.5em;
+      border: 1px solid #9E9E9E;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+
+      .Main__relevantFileName {
+        width: 20%;
+        font-size: 1em;
+        font-family: Arial;
+        color: #444444;
+        margin: 0.5em;
+        border-right: 1px solid #9E9E9E;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+
+        .Main__relevantFileLink {
+          font-size: 1em;
+          font-family: Arial;
+          color: #ff6711; }
+          .Main__relevantFileLink:hover {
+            cursor: pointer;
+            color: #ff6711;
+            text-decoration: underline; }
+
+.Main__relevantFileComponent {
+  width: 20%;
+  font-size: 1em;
+  font-family: Arial;
+  color: #444444;
+  margin: 0.5em;
+  border-right: 1px solid #9E9E9E;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+  .Main__relevantFileDescription {
+    width: 40%;
+    font-size: 1em;
+    font-family: Arial;
+    color: #444444;
+    margin: 0.5em;
+    border-right: 1px solid #9E9E9E; }
+
+    .Main__relevantFileDataSheet {
+      width: 20%;
+      font-size: 1em;
+      font-family: Arial;
+      color: #444444;
+      margin: 0.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+
+      .Main__relevantFileHeader {
+        padding: 0 1em;
+        margin: 0.5em 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }
+
+        .Main__relevantFileNameHeader {
+          width: 20%;
+          font-size: 1em;
+          font-family: Arial;
+          color: #444444;
+          margin: 0.5em;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+
+          .Main__relevantFileComponentHeader {
+            width: 20%;
+            font-size: 1em;
+            font-family: Arial;
+            color: #444444;
+            margin: 0.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center; }
+
+            .Main__relevantFileDescriptionHeader {
+              width: 40%;
+              font-size: 1em;
+              font-family: Arial;
+              color: #444444;
+              margin: 0.5em;
+              display: flex;
+              align-items: center;
+              justify-content: center; }
+
+              .Main__relevantFileDataSheetHeader {
+                width: 20%;
+                font-size: 1em;
+                font-family: Arial;
+                color: #444444;
+                margin: 0.5em;
+                display: flex;
+                align-items: center;
+                justify-content: center; }

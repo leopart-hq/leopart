@@ -1,0 +1,70 @@
+@import 'variables';
+
+body{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
+.Background_rightTop{
+    position: absolute;
+    right: 0px;
+    top: -165px;
+    z-index: 0;
+    width: 532px;
+
+    @media screen and (max-width: 924px) {
+        right: -140px;
+    }
+
+    @media screen and (max-width: 713px) {
+        right: -270px;
+    }
+
+    @media screen and (max-width: 530px) {
+        display: none;
+    }
+}
+
+.Footer{
+    border-top: 1px solid $grey-scale-darker;
+}
+
+.Footer__container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 60em;
+    margin: auto;
+    padding: 1em;
+    justify-content: space-between;
+}
+
+.Footer__logoContainer{
+    @include textM;
+    color: $grey-scale-darker;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+}
+
+.Footer__logoContainerImage{
+    height: 4em;
+    margin-left: 0.25em;
+}
+
+.Footer__licenseButton{
+    @include textM;
+    color: $brand-color;
+    margin: 0.5em;
+    text-decoration: none;
+}
+
+.Footer__licenseButton:hover{
+    cursor: pointer;
+    color: $brand-color;
+    text-decoration: underline;
+}
+

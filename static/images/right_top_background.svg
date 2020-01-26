@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="472px" height="330px" viewBox="0 0 472 330" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>hero__homepage--right</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="-13.8523198%" y1="76.3868717%" x2="74.7961402%" y2="150.03777%" id="linearGradient-1">
+            <stop stop-color="#51A7F5" offset="0%"></stop>
+            <stop stop-color="#9C20CF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-4.33078525%" y1="62.3704229%" x2="41.1771952%" y2="-31.771088%" id="linearGradient-2">
+            <stop stop-color="#51A7F5" offset="0%"></stop>
+            <stop stop-color="#9C20CF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="170110_bw_aisler_home_high-fidelity" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-552.000000, 0.000000)">
+        <g id="hero" transform="translate(-958.000000, -238.000000)" fill-rule="nonzero">
+            <g id="hero__homepage--right" transform="translate(1510.000000, 0.000000)">
+                <path d="M1163.57088,360.800493 L1163.57088,335.754199 L1123.28129,317.386917 L1125.50928,322.581704 L478.647795,37.053957 C465.094153,29.2617768 448.01285,30.5604735 435.758873,40.3934628 L14.4819736,268.221971 C13.1823093,269.335139 11.882645,270.448308 10.5829807,271.747005 L0,267.108802 L0.185666328,295.123545 C-0.928331642,308.110512 5.1986572,322.952761 18.5666328,330.930469 L677.1251,674.528512 C692.349739,683.619389 711.844703,681.207523 724.284347,668.591612 L1153.17357,393.453439 C1162.08555,384.362562 1165.24188,372.117707 1163.57088,360.800493 Z" id="Shape" fill="url(#linearGradient-1)"></path>
+                <path d="M677.058673,642.542178 L18.4851699,298.850535 C-4.35230995,285.125127 -6.3946862,252.851869 14.4004174,236.344284 L435.686935,8.39121844 C447.941193,-1.43914158 464.837214,-2.73749101 478.576836,5.0526056 L1144.76283,301.447234 C1166.48629,313.874293 1170.57104,343.365373 1153.11801,361.356786 L724.218997,636.421388 C711.779069,649.219404 692.28366,651.630624 677.058673,642.542178 Z" id="Shape" fill="url(#linearGradient-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
