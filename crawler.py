@@ -1,3 +1,10 @@
+"""
+Crawler
+====================================
+The GitHub crawler. This crawler searches GitHub for repositories that contain 'KiCad' or 'PCB' in their description or
+readme, checks if they contain .kicad_pcb files, and saves repository metadata and the file urls so that they can later
+be parsed by the parser module.
+"""
 from github import Github, GithubException
 import pickle
 import time
@@ -17,6 +24,8 @@ except KeyError:
     config_path = 'config/crawler.config'
 
 config.read(config_path)
+
+print(config.values())
 
 RATE_LIMIT_SAFETY = int(config['DEFAULT']['RATE_LIMIT_SAFETY'])
 abuse_count = 0

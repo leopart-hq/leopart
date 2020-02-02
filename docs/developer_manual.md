@@ -43,6 +43,11 @@ Those include:
     python-dateutil
     ```
     
+    Additionally on windows systems:
+    ````
+    curses-windows
+    ````
+    
 
 - for the parser additionally
     ````
@@ -56,10 +61,11 @@ Those include:
     jellyfish
     ```` 
   
-Please note that for some packages, additional system requirements may occur (e.g. a C/C++ compiler). 
-
+Please note that for some packages, additional system requirements may occur (e.g. a C/C++ compiler). If you don't fulfill
+the requirements, you will be notified and hinted on how to solve this during installation. 
+ 
 # Installation
-To run the software, please follow these installation procedures
+To run our software, please follow these installation procedures
 
 1. Download and install the binaries for Python from the website or package manager according to your operating system.
     You can get the latest version at [https://www.python.org/downloads/](https://www.python.org/downloads/)

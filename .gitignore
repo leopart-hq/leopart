@@ -15,3 +15,6 @@ henmsearch.service
 /config/parser.config
 /static/css/*.scss.css
 /static/css/*.scss.css.map
+docs/_build
+henm.ini
+wsgi.py

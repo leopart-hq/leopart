@@ -10,3 +10,5 @@ requests
 pycodestyle
 sqlalchemy
 jellyfish
+sphinx
+recommonmark

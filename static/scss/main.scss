@@ -53,7 +53,7 @@ body{
     @include titleXXL;
     color: $grey-scale-darker;
     margin: 40px 100px 0px 0;
-    max-width: 550px;
+    max-width: 600px;
 
     text-decoration: none;
 
@@ -64,21 +64,21 @@ body{
 
 .Main__stitle {
     color: $grey-scale-darker;
-    margin-bottom: 30px;
+    margin-bottom: 70px;
     font-size: 1.125em;
 }
 
 .Main__description {
     color: $grey-scale-text;
-    margin: 0 70px 50px 0;
-    max-width: 550px;
+    margin: 0 70px 30px 0;
+    max-width: 600px;
 }
 
 .Main__subtitle{
     @include titleXL;
     color: $grey-scale-darker;
-    margin: 30px 100px 20px 0;
-    max-width: 550px;
+    margin: 0px 100px 70px 0;
+    max-width: 600px;
 }
 
 .Main__searchContainer{

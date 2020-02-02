@@ -1,3 +1,17 @@
+"""
+Validator
+====================================
+Component names in KiCad files are freetext fields, therefore we try to validate whether or not the specified components
+are actual existing components that can be bought. We do this by searching components in the DigiKey database, and
+evaluating the number of results. Components that can not be found, or that return more than 10 results are considered
+as non-existent or too general.
+
+The validator downloads existing components from the AISLER API. AISLER retrieves this info from DigiKey, so we are
+building a database of parts that can be bought at DigiKey. Because AISLER's rate limit at DK is not very big, we only
+download their cache. Over time, this will allow us a big enough database of components to validate parts. In the
+future, it might be better to immediately validate with DK, if we can get a big enough rate limit.
+"""
+
 import argparse
 import json
 import pickle

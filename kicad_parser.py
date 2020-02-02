@@ -1,3 +1,11 @@
+"""
+Parser
+====================================
+The KiCad parser. The parser downloads the KiCad files that were previously saved to a pickle file by the crawler and
+parses them using the realthunder kicad parser. It will create an sqlite database, that can then be searched by the
+flask search app.
+"""
+
 import argparse
 import logging
 from configparser import ConfigParser
@@ -14,12 +22,14 @@ from models.base import Base
 from models.files import File
 from models.repos import Repo
 from models.items import Item
+from models.part import Part
 import os
 
 # read the configuration
 config = ConfigParser()
 # Read config file path from environment variable in CI
 try:
+    print("READING ENV")
     env_config = os.environ['PARSER_CONFIG']
     config.read(env_config)
 except KeyError:
@@ -251,7 +261,11 @@ def parse_kicad_file(contents):
                     value = fp_text[1]
 
                 else:
-                    logger.warning(f"Ignoring field '{fp_text[0]}' with value '{fp_text[1]}'")
+                    try:
+                        logger.warning(f"Ignoring field '{fp_text[0]}' with value '{fp_text[1]}'")
+                    except KeyError:
+                        # fp_text[0] or fp_text[1] are empty, just continue...
+                        pass
                     pass
 
         # save in data output
