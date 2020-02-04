@@ -25,17 +25,13 @@ from models.items import Item
 from models.part import Part
 import os
 
-# read the configuration
 config = ConfigParser()
 
-config_path = 'config/parser.config'
-
-# check whether we have a config file
-if os.path.exists(config_path):
-    config.read(config_path)
+# check whether we have a custom config file
+if os.path.exists('config/parser.config'):
+    config.read('config/parser.config')
 else:
-    print(f"Could not read config. Please check that the file is located in '{config_path}'.")
-    exit(-3)
+    config.read('config/default_parser.config')
 
 # Check for db repo
 db_path = config["DATABASE"]["database-uri"].split(":///")

@@ -73,14 +73,11 @@ def deregister_graceful_exit():
 # read the configuration
 config = ConfigParser()
 
-config_path = 'config/parser.config'
-
-# check whether we have a config file
-if os.path.exists(config_path):
-    config.read(config_path)
+# check whether we have a custom config file
+if os.path.exists('config/parser.config'):
+    config.read('config/parser.config')
 else:
-    print(f"Could not read config. Please check that the file is located in '{config_path}'.")
-    exit(-3)
+    config.read('config/default_parser.config')
 
 try:
     AISLER_CLIENT_ID = os.environ['AISLER_CLIENT_ID']

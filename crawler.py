@@ -16,11 +16,12 @@ from configparser import ConfigParser
 import os
 
 config = ConfigParser()
-config_path = 'config/crawler.config'
 
-config.read(config_path)
-
-print(config.values())
+# check whether we have a custom config file
+if os.path.exists('config/crawler.config'):
+    config.read('config/crawler.config')
+else:
+    config.read('config/default_crawler.config')
 
 RATE_LIMIT_SAFETY = int(config['DEFAULT']['RATE_LIMIT_SAFETY'])
 try:
