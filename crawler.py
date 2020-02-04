@@ -16,18 +16,18 @@ from configparser import ConfigParser
 import os
 
 config = ConfigParser()
-# Read config file path from environment variable in CI
-try:
-    config_path = os.environ['CRAWLER_CONFIG']
-except KeyError:
-    # No environment variable exists so we are not on GitLab
-    config_path = 'config/crawler.config'
+config_path = 'config/crawler.config'
 
 config.read(config_path)
 
 print(config.values())
 
 RATE_LIMIT_SAFETY = int(config['DEFAULT']['RATE_LIMIT_SAFETY'])
+try:
+    GITHUB_TOKEN = os.environ['GITHUB_TOKEN']
+except KeyError:
+    GITHUB_TOKEN = config['GitHub']['Token']
+
 abuse_count = 0
 
 logger = logging.getLogger("Crawler")
@@ -50,7 +50,7 @@ def main(test=False):
     files has been found. Used for testing.
     """
     # Maximum per page seems to be 100, but it doesn't hurt to set it higher
-    g = Github(config['GitHub']['Token'], per_page=1000)
+    g = Github(GITHUB_TOKEN, per_page=1000)
 
     try:
         with open('crawler_status.pickle', 'rb') as f:

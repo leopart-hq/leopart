@@ -72,23 +72,25 @@ def deregister_graceful_exit():
 
 # read the configuration
 config = ConfigParser()
-# Read config file path from environment variable in CI
-try:
-    env_config = os.environ['PARSER_CONFIG']
-    config.read(env_config)
-except KeyError:
-    # No environment variable exists so we are not on GitLab
-    config_path = 'config/parser.config'
 
-    # check whether we have a config file
-    if os.path.exists(config_path):
-        config.read(config_path)
-    else:
-        print(f"Could not read config. Please check that the file is located in '{config_path}'.")
-        exit(-3)
-except Exception:
-    print(f"Failed to initialize Configuration. Please check.")
-    exit(-2)
+config_path = 'config/parser.config'
+
+# check whether we have a config file
+if os.path.exists(config_path):
+    config.read(config_path)
+else:
+    print(f"Could not read config. Please check that the file is located in '{config_path}'.")
+    exit(-3)
+
+try:
+    AISLER_CLIENT_ID = os.environ['AISLER_CLIENT_ID']
+except KeyError:
+    AISLER_CLIENT_ID = config['AISLER_API']['Client-ID']
+
+try:
+    AISLER_AUTH_TOKEN = os.environ['AISLER_AUTH_TOKEN']
+except KeyError:
+    AISLER_AUTH_TOKEN = config['AISLER_API']['Authorization']
 
 # Initialize SQL session
 Session = None
@@ -248,8 +250,8 @@ def build_parts_db():
         print(f"Fetching: {url}")
 
         headers = {
-            'Client-ID': config["AISLER_API"]["Client-ID"],
-            'Authorization': config["AISLER_API"]["Authorization"]
+            'Client-ID': AISLER_CLIENT_ID,
+            'Authorization': AISLER_AUTH_TOKEN
         }
 
         # fetch API data
