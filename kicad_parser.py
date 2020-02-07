@@ -387,7 +387,7 @@ if __name__ == "__main__":
                         help='uses a pickle file')
     args = parser.parse_args()
 
-    if args.pickle is None and args.kicad is None and args.url is None:
+    if args.pickle is None:
         print("Error: you need to at least specify one source (pickle)")
         exit()
 
