@@ -103,6 +103,14 @@ def main(test=False):
 
                     content_files = g.search_code(f'.kicad_pcb in:path repo:{repo.full_name}')
 
+                    license_text = 'Could not find license.md in repository, please check for the license ' \
+                                   'before using the contents of this repository for your project!'
+                    license_url = ''
+
+                    license = repo.get_license
+                    license_text = license.decoded_content
+                    license_url = license.download_url
+
                     list_of_kicad_files = []
                     try:
                         for cf in content_files:
@@ -136,17 +144,11 @@ def main(test=False):
                                 if file.name.lower() == 'readme.md':
                                     readme = file.decoded_content.decode('utf-8')
                                     readme_url = file.download_url
-                                elif file.name.lower() == 'license.md':
-                                    license_text = file.decoded_content.decode('utf-8')
-                                    license_url = file.download_url
 
                         except GithubException as e:
                             handle_github_exception(e)
                             readme = 'Could not find readme in repository'
                             readme_url = ''
-                            license_text = 'Could not find license.md in repository, please check for the license ' \
-                                           'before using the ontents of this repository for your project!'
-                            license_url = ''
                             pass
 
                         info_dict = {
