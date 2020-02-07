@@ -107,9 +107,12 @@ def main(test=False):
                                    'before using the contents of this repository for your project!'
                     license_url = ''
 
-                    license = repo.get_license
-                    license_text = license.decoded_content
-                    license_url = license.download_url
+                    try:
+                        license = repo.get_license()
+                        license_text = license.decoded_content
+                        license_url = license.download_url
+                    except Exception as e:
+                        logger.error(f'Exception accessing license: {e}')
 
                     list_of_kicad_files = []
                     try:
