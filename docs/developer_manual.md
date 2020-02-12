@@ -161,17 +161,13 @@ In the following, we will show you how to obtain these two things.
 To obtain the repositories pickle file, you need to execute the crawler. The crawler will search on GitHub for repositories containing KiCad files. 
 
 To execute the crawler, please follow these steps:
-1. In the project root directory, make a copy of the ``example_crawler.config`` file and rename it to ``crawler.config``.
+1. In the project root directory, make a copy of the ``default_crawler.config`` file and rename it to ``crawler.config``.
 
-2. Open the ``crawler.config`` file and add the following information:
-    1. ``User`` the Username 
-    2. ``Password`` the secret password.
-    
-    Currently, these credentials are the same used to log in into your github account.
+2. Open the newly created ``crawler.config`` file and replace ``supersecretpersonaltoken`` with your [personal access token from Github.](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
     
     After you have added these credentials, save and close the file.
     
- 3. Start the crawler by issuing the following command in the command promt or terminal in the project root.
+ 3. Start the crawler by issuing the following command in the command prompt or terminal in the project root.
     ```
     python crawler.py
     ``` 
@@ -185,7 +181,7 @@ Once you have obtained a pickle file from our crawler, you can use our parser to
 
 To run it, please follow these instructions:
 1. In the project root directory, run the following command: 
-    ````python -m kicad_parser.py -p repos.pickle````
+    ````python -m kicad_parser -p repos.pickle````
     The parser now extracts all components from the found KiCad files.
 
 **Notice:** We already try to filter out uninteresting components. If you notice any parts in particular, that you want to exclude add them in the `excluded_values.txt` (one entry per row).
