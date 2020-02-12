@@ -5,7 +5,7 @@ The GitHub crawler. This crawler searches GitHub for repositories that contain '
 readme, checks if they contain .kicad_pcb files, and saves repository metadata and the file urls so that they can later
 be parsed by the parser module.
 """
-from github import Github, GithubException
+from github import Github, GithubException, UnknownObjectException
 import pickle
 import time
 from dateutil import rrule
@@ -103,16 +103,14 @@ def main(test=False):
 
                     content_files = g.search_code(f'.kicad_pcb in:path repo:{repo.full_name}')
 
-                    license_text = 'Could not find license.md in repository, please check for the license ' \
-                                   'before using the contents of this repository for your project!'
-                    license_url = ''
-
                     try:
                         license = repo.get_license()
                         license_text = license.decoded_content
                         license_url = license.download_url
-                    except Exception as e:
-                        logger.error(f'Exception accessing license: {e}')
+                    except UnknownObjectException:
+                        license_text = 'Could not find license.md in repository, please check for the license ' \
+                                       'before using the contents of this repository for your project!'
+                        license_url = ''
 
                     list_of_kicad_files = []
                     try:
