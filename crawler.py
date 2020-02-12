@@ -106,7 +106,7 @@ def main(test=False):
                     try:
                         license = repo.get_license()
                         license_text = license.decoded_content
-                        license_url = license.download_url
+                        license_url = license.html_url
                     except UnknownObjectException:
                         license_text = 'Could not find license.md in repository, please check for the license ' \
                                        'before using the contents of this repository for your project!'
