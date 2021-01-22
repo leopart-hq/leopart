@@ -1,4 +1,7 @@
 # LEOPART
+
+Unfortunately, I have not had time to work on this project besides university and work in the past year. If anyone wants to continue it, I will gladly hand over control of this GitHub organisation.
+
 This is LEOPART, a fast search engine for electronic components in KicCad files on GitHub.
 
 Leopart has 4 major components:
